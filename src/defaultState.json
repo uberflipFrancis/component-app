@@ -1,0 +1,29 @@
+{
+  "components": {
+    "button": {
+      "fields": [
+        {
+          "name": "backgroundColor",
+          "property": "bg-",
+          "input": "color"
+        },
+        {
+          "name": "textColor",
+          "property": "text-",
+          "input": "color"
+        },
+        {
+          "name": "textSize",
+          "property": "text-",
+          "input": "number"
+        },
+        {
+          "name": "borderRadius",
+          "property": "rounded-",
+          "input": "number"
+        }
+      ],
+      "saved": []
+    }
+  }
+}
