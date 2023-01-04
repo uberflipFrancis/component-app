@@ -19,7 +19,6 @@ const ButtonEditor = () => {
   const componentButton = "bg-red-700 text-zinc-100 p-3 rounded mb-2";
 
   useEffect(() => {
-    console.log("this is saved", saved.length);
     if (Number(id) < saved.length) {
       setProperties(saved[Number(id)]);
     } else if (Number(id) === saved.length) {

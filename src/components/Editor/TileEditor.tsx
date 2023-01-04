@@ -16,7 +16,6 @@ const TileEditor = () => {
 
   const addSaved = useComponentStore((state) => state.addSaved);
   useEffect(() => {
-    console.log("this is saved", saved);
     if (Number(id) < saved.length) {
       setProperties(saved[Number(id)]);
     } else if (Number(id) === saved.length) {

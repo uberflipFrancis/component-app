@@ -23,8 +23,6 @@ const ComponentForm = ({
   const [formFields, setFormFields] = useState<JSX.Element[]>([]);
   const { fields } = useComponentStore((state) => state.components[type]);
 
-  console.log("this is properties", properties);
-
   const setSaved = useComponentStore((state) => state.setSaved);
 
   //set up default state of form

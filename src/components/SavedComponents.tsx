@@ -24,10 +24,6 @@ const SavedComponents = () => {
     (state) => state.components[type ? type : "button"].saved
   );
 
-  if (type) {
-    console.log("this is saved", saved);
-  }
-
   useEffect(() => {
     const makeList = (
       component: () => JSX.Element,

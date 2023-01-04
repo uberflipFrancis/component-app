@@ -298,9 +298,10 @@ function App() {
             path="component/saved/:type"
             element={<SavedComponents />}
           ></Route>
-          <Route path="component/button/:id" element={<ButtonEditor />}></Route>
-          <Route path="component/cta/:id" element={<CTAEditor />}></Route>
-          <Route path="component/tile/:id" element={<TileEditor />}></Route>
+          <Route
+            path="component/:type/:id"
+            element={<ComponentEditor />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>
