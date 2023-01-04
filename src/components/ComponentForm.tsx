@@ -1,5 +1,5 @@
 import React, { FormEvent, useState, useEffect } from "react";
-import type { Field } from "../App";
+import type { Element } from "../App";
 
 import { useComponentStore } from "../App";
 
@@ -10,14 +10,21 @@ interface FormState {
 
 interface FormProps {
   type: string;
+  cIndex: number;
+  properties: Element;
 }
 
-const ComponentForm = ({ type }: FormProps): JSX.Element => {
+const ComponentForm = ({
+  type,
+  cIndex,
+  properties,
+}: FormProps): JSX.Element => {
   const [formState, setFormState] = useState<FormState>({} as FormState);
   const [formFields, setFormFields] = useState<JSX.Element[]>([]);
   const { fields } = useComponentStore((state) => state.components[type]);
 
   const setCurrent = useComponentStore((state) => state.setCurrent);
+  const setSaved = useComponentStore((state) => state.setSaved);
 
   //set up default state of form
   useEffect(() => {
@@ -59,8 +66,8 @@ const ComponentForm = ({ type }: FormProps): JSX.Element => {
 
   let handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log("this is the form state", formState);
-    setCurrent(type, formState);
+
+    setSaved(type, formState, cIndex);
   };
 
   return (

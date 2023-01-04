@@ -2,7 +2,6 @@ import React, { ReactNode } from "react";
 import { isStringLiteral } from "typescript";
 import ComponentForm from "./components/ComponentForm";
 
-import ButtonForm from "./components/ComponentForms/ButtonForm";
 import { ButtonEditor } from "./components/Editor/ButtonEditor";
 import { CTAEditor } from "./components/Editor/CTAEditor";
 import { TileEditor } from "./components/Editor/TileEditor";
@@ -182,16 +181,6 @@ const useComponentStore = create<State>()((set) => ({
   setCurrent: (type, element) => {
     console.log("this is element", type);
     set((state) => {
-      console.log("this is state", {
-        ...state,
-        components: {
-          ...state.components,
-          [type]: {
-            ...state.components[type],
-            current: element,
-          },
-        },
-      });
       return {
         ...state,
         components: {
@@ -202,6 +191,44 @@ const useComponentStore = create<State>()((set) => ({
           },
         },
       };
+    });
+  },
+  setSaved: (type, element, index) => {
+    set((state) => {
+      return {
+        ...state,
+        components: {
+          ...state.components,
+          [type]: {
+            ...state.components[type],
+            saved: state.components[type].saved.map((sElement, eIndex) => {
+              if (eIndex !== index) {
+                return sElement;
+              } else {
+                return element;
+              }
+            }),
+          },
+        },
+      };
+    });
+  },
+  addSaved: (type, element, id) => {
+    set((state) => {
+      if (state.components[type].saved.length === id) {
+        return {
+          ...state,
+          components: {
+            ...state.components,
+            [type]: {
+              ...state.components[type],
+              saved: [...state.components[type].saved, element],
+            },
+          },
+        };
+      } else {
+        return state;
+      }
     });
   },
 }));
@@ -228,6 +255,8 @@ interface State {
     [key: string]: Component;
   };
   setCurrent: (component: string, element: Element) => void;
+  setSaved: (component: string, element: Element, index: number) => void;
+  addSaved: (type: string, element: Element, index: number) => void;
 }
 
 interface Element {
@@ -267,9 +296,9 @@ function App() {
             path="component/saved/:type"
             element={<SavedComponents />}
           ></Route>
-          <Route path="component/button" element={<ButtonEditor />}></Route>
-          <Route path="component/cta" element={<CTAEditor />}></Route>
-          <Route path="component/tile" element={<TileEditor />}></Route>
+          <Route path="component/button/:id" element={<ButtonEditor />}></Route>
+          <Route path="component/cta/:id" element={<CTAEditor />}></Route>
+          <Route path="component/tile/:id" element={<TileEditor />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

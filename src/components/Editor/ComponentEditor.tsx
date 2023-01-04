@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -11,21 +11,15 @@ import { Link } from "react-router-dom";
 const ButtonEditor = () => {
   const current = useComponentStore((state) => state.components.button.current);
   const saved = useComponentStore((state) => state.components.button.saved);
-  const addSaved = useComponentStore((state) => state.addSaved);
   const { id } = useParams();
 
-  const [properties, setProperties] = useState(current);
+  let properties = current;
+
+  if (Number(id) < saved.length) {
+    properties = saved[Number(id)];
+  }
 
   const componentButton = "bg-red-700 text-zinc-100 p-3 rounded mb-2";
-
-  useEffect(() => {
-    console.log("this is saved", saved.length);
-    if (Number(id) < saved.length) {
-      setProperties(saved[Number(id)]);
-    } else if (Number(id) === saved.length) {
-      addSaved("button", current, Number(id));
-    }
-  }, [id, saved, addSaved, current]);
 
   return (
     <div>

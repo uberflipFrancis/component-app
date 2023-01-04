@@ -6,16 +6,69 @@ import Tile from "./Basic/Tile";
 
 import { Link } from "react-router-dom";
 
+import { useComponentStore } from "../App";
+
 const Home = () => {
-  const componentContainer = "";
-  const buttonContainer = "flex flex-col justify-start";
+  const componentContainer = "p-5";
+  const buttonContainer = "flex justify-start";
   const componentTitle = "text-xl mb-2 font-bold";
-  const componentButton = "bg-red-700 text-zinc-100 p-3 rounded mb-2";
+  const componentButton =
+    "bg-red-700 text-zinc-100 p-3 rounded mb-2 first:mr-2";
+
+  const buttonSaved = useComponentStore(
+    (state) => state.components.button.saved
+  );
+  const tileSaved = useComponentStore((state) => state.components.tile.saved);
+  const ctaSaved = useComponentStore((state) => state.components.cta.saved);
+
   return (
     <div>
       <h1>Component Editor</h1>
-      <div className="border-l border-t border-r flex flex-col">
-        <div className="flex p-5 justify-center items-center">
+      <div className="flex flex-col">
+        <div className="grid grid-cols-3">
+          <div className="flex p-5 justify-center items-center">
+            <div className="w-80 flex items-center justify-center">
+              <Button
+                properties={{
+                  name: "testing",
+                  backgroundColor: "#000",
+                  textColor: "#fff",
+                  textSize: 12,
+                  borderRadius: 0,
+                }}
+              ></Button>
+            </div>
+          </div>
+          <div className="flex p-5 justify-center items-center">
+            <div className="w-80 flex items-center justify-center">
+              <Tile
+                properties={{
+                  name: "test",
+                  tileBackground: "#FF0000",
+                  descriptionBackground: "#000",
+                  tileTitle: "testing",
+                  titleSize: 18,
+                  titleColor: "#fff",
+                  tileDescription: "tile description",
+                  descriptionSize: 12,
+                  descriptionColor: "#fff",
+                }}
+              ></Tile>
+            </div>
+          </div>
+          <div className="flex p-5 justify-center items-center">
+            <div className="w-80 flex items-center justify-center">
+              <CTA
+                properties={{
+                  name: "testing",
+                  tileBackground: "#FF0000",
+                  buttonBackground: "#000",
+                }}
+              ></CTA>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-3">
           <div className={`${componentContainer}`}>
             <h2 className={`${componentTitle}`}>Button</h2>
             <div className={`${buttonContainer}`}>
@@ -24,23 +77,11 @@ const Home = () => {
                   Saved Components
                 </button>
               </Link>
-
-              <button className={`${componentButton}`}>New Component</button>
+              <Link to={`button/${buttonSaved.length}`}>
+                <button className={`${componentButton}`}>New Component</button>
+              </Link>
             </div>
           </div>
-          <div className="w-80 flex items-center justify-center">
-            <Button
-              properties={{
-                name: "testing",
-                backgroundColor: "#000",
-                textColor: "#fff",
-                textSize: 12,
-                borderRadius: 0,
-              }}
-            ></Button>
-          </div>
-        </div>
-        <div className="flex p-5 justify-center items-center">
           <div className={`${componentContainer}`}>
             <h2 className={`${componentTitle}`}>Tile</h2>
             <div className={`${buttonContainer}`}>
@@ -49,26 +90,11 @@ const Home = () => {
                   Saved Components
                 </button>
               </Link>
-              <button className={`${componentButton}`}>New Component</button>
+              <Link to={`tile/${tileSaved.length}`}>
+                <button className={`${componentButton}`}>New Component</button>
+              </Link>
             </div>
           </div>
-          <div className="w-80 flex items-center justify-center">
-            <Tile
-              properties={{
-                name: "test",
-                tileBackground: "#FF0000",
-                descriptionBackground: "#000",
-                tileTitle: "testing",
-                titleSize: 18,
-                titleColor: "#fff",
-                tileDescription: "tile description",
-                descriptionSize: 12,
-                descriptionColor: "#fff",
-              }}
-            ></Tile>
-          </div>
-        </div>
-        <div className="flex p-5 justify-center items-center">
           <div className={`${componentContainer}`}>
             <h2 className={`${componentTitle}`}>CTA</h2>
             <div className={`${buttonContainer}`}>
@@ -77,17 +103,10 @@ const Home = () => {
                   Saved Components
                 </button>
               </Link>
-              <button className={`${componentButton}`}>New Component</button>
+              <Link to={`cta/${ctaSaved.length}`}>
+                <button className={`${componentButton}`}>New Component</button>
+              </Link>
             </div>
-          </div>
-          <div className="w-80 flex items-center justify-center">
-            <CTA
-              properties={{
-                name: "testing",
-                tileBackground: "#FF0000",
-                buttonBackground: "#000",
-              }}
-            ></CTA>
           </div>
         </div>
       </div>

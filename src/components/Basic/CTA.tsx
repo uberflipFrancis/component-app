@@ -8,7 +8,7 @@ interface CTAProps {
 
 const CTA = ({ properties }: CTAProps): JSX.Element => {
   const { tileBackground, buttonBackground } = properties;
-  console.log("this is buttonBackground", buttonBackground);
+
   return (
     <div
       className="w-64 h-96
