@@ -1,11 +1,4 @@
-import React, { ReactNode } from "react";
-import { isStringLiteral } from "typescript";
-import ComponentForm from "./components/ComponentForm";
-
-import { ButtonEditor } from "./components/Editor/ButtonEditor";
-import { CTAEditor } from "./components/Editor/CTAEditor";
-import { TileEditor } from "./components/Editor/TileEditor";
-import { ComponentEditor } from "./components/Editor/ComponentEditor";
+import { ComponentEditor } from "./components/ComponentEditor";
 
 import SavedComponents from "./components/SavedComponents";
 
@@ -239,11 +232,6 @@ interface Field {
   default: string | number;
 }
 
-interface Property {
-  type: string;
-  value: string | number;
-}
-
 interface Component {
   fields: { [key: string]: Field };
   component: () => JSX.Element;
@@ -307,14 +295,7 @@ function App() {
     </div>
   );
 }
-export type {
-  Property,
-  Field,
-  ButtonElement,
-  CTAElement,
-  TileElement,
-  Element,
-};
+export type { Field, ButtonElement, CTAElement, TileElement, Element };
 export { useComponentStore };
 
 export default App;

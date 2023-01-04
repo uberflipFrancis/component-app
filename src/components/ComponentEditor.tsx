@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
-import { useComponentStore } from "../../App";
-import ComponentForm from "../ComponentForm";
+import { useComponentStore } from "../App";
+import ComponentForm from "./ComponentForm";
 
 import { Link } from "react-router-dom";
 

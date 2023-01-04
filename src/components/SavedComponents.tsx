@@ -20,10 +20,6 @@ const SavedComponents = () => {
   const [componentList, setComponentList] = useState<JSX.Element[]>([]);
   const componentButton = "bg-red-700 text-zinc-100 p-3 rounded mb-2";
 
-  const saved = useComponentStore(
-    (state) => state.components[type ? type : "button"].saved
-  );
-
   useEffect(() => {
     const makeList = (
       component: () => JSX.Element,
