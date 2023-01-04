@@ -23,7 +23,7 @@ const SavedComponents = () => {
   const saved = useComponentStore(
     (state) => state.components[type ? type : "button"].saved
   );
-  
+
   if (type) {
     console.log("this is saved", saved);
   }
@@ -64,7 +64,9 @@ const SavedComponents = () => {
 
   return (
     <div>
-      <h1>Saved Components - {type}</h1>
+      <h1 className="text-3xl font-bold p-5 text-center">
+        Saved Components - <span className="capitalize">{type}</span>
+      </h1>
       <Link to="/component">
         <button className={componentButton}>Back home</button>
       </Link>

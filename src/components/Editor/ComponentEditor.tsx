@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -8,18 +8,24 @@ import ComponentForm from "../ComponentForm";
 
 import { Link } from "react-router-dom";
 
-const ButtonEditor = () => {
+const ComponentEditor = () => {
   const current = useComponentStore((state) => state.components.button.current);
   const saved = useComponentStore((state) => state.components.button.saved);
+  const addSaved = useComponentStore((state) => state.addSaved);
   const { id } = useParams();
 
-  let properties = current;
-
-  if (Number(id) < saved.length) {
-    properties = saved[Number(id)];
-  }
+  const [properties, setProperties] = useState(current);
 
   const componentButton = "bg-red-700 text-zinc-100 p-3 rounded mb-2";
+
+  useEffect(() => {
+    console.log("this is saved", saved.length);
+    if (Number(id) < saved.length) {
+      setProperties(saved[Number(id)]);
+    } else if (Number(id) === saved.length) {
+      addSaved("button", current, Number(id));
+    }
+  }, [id, saved, addSaved, current]);
 
   return (
     <div>
@@ -41,4 +47,4 @@ const ButtonEditor = () => {
   );
 };
 
-export { ButtonEditor };
+export { ComponentEditor };

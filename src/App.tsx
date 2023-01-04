@@ -5,6 +5,7 @@ import ComponentForm from "./components/ComponentForm";
 import { ButtonEditor } from "./components/Editor/ButtonEditor";
 import { CTAEditor } from "./components/Editor/CTAEditor";
 import { TileEditor } from "./components/Editor/TileEditor";
+import { ComponentEditor } from "./components/Editor/ComponentEditor";
 
 import SavedComponents from "./components/SavedComponents";
 
@@ -33,7 +34,7 @@ const useComponentStore = create<State>()((set) => ({
         },
         descriptionBackground: {
           input: "color",
-          default: "#fff",
+          default: "#ffffff",
         },
         tileTitle: {
           input: "text",
@@ -45,7 +46,7 @@ const useComponentStore = create<State>()((set) => ({
         },
         titleColor: {
           input: "color",
-          default: "#000",
+          default: "#ffffff",
         },
         tileDescription: {
           input: "text",
@@ -57,31 +58,31 @@ const useComponentStore = create<State>()((set) => ({
         },
         descriptionColor: {
           input: "color",
-          default: "#fff",
+          default: "#ffffff",
         },
       },
       current: {
         name: "test",
         tileBackground: "#FF0000",
-        descriptionBackground: "#000",
+        descriptionBackground: "#000000",
         tileTitle: "testing",
         titleSize: 18,
-        titleColor: "#fff",
+        titleColor: "#ffffff",
         tileDescription: "tile description",
         descriptionSize: 12,
-        descriptionColor: "#fff",
+        descriptionColor: "#ffffff",
       },
       saved: [
         {
           name: "tileTest1",
           tileBackground: "#eda01a",
-          descriptionBackground: "#000",
+          descriptionBackground: "#000000",
           tileTitle: "tileTest1",
           titleSize: 22,
-          titleColor: "#fff",
+          titleColor: "#ffffff",
           tileDescription: "tile test description",
           descriptionSize: 14,
-          descriptionColor: "#fff",
+          descriptionColor: "#ffffff",
         },
         {
           name: "tileTest2",
@@ -89,9 +90,9 @@ const useComponentStore = create<State>()((set) => ({
           descriptionBackground: "#000",
           tileTitle: "tileTest2",
           titleSize: 18,
-          titleColor: "#fff",
+          titleColor: "#ffffff",
           tileDescription: "tile test 2 description",
-          descriptionColor: "#fff",
+          descriptionColor: "#ffffff",
         },
       ],
     },
@@ -155,8 +156,8 @@ const useComponentStore = create<State>()((set) => ({
       },
       current: {
         name: "testing",
-        backgroundColor: "#000",
-        textColor: "#000",
+        backgroundColor: "#000000",
+        textColor: "#000000",
         textSize: 12,
         borderRadius: 0,
       } as ButtonElement,
@@ -164,14 +165,14 @@ const useComponentStore = create<State>()((set) => ({
         {
           name: "button test 1",
           backgroundColor: "#fcc81c",
-          textColor: "#000",
+          textColor: "#000000",
           textSize: 14,
           borderRadius: 0,
         },
         {
           name: "button test 2",
           backgroundColor: "#f27024",
-          textColor: "#000",
+          textColor: "#000000",
           textSize: 12,
           borderRadius: 10,
         },
@@ -261,6 +262,7 @@ interface State {
 
 interface Element {
   name: string;
+  [key: string]: any;
 }
 
 interface ButtonElement extends Element {

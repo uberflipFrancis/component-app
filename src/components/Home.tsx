@@ -23,7 +23,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Component Editor</h1>
+      <h1 className="text-3xl font-bold p-5 text-center">Component Editor</h1>
       <div className="flex flex-col">
         <div className="grid grid-cols-3">
           <div className="flex p-5 justify-center items-center">

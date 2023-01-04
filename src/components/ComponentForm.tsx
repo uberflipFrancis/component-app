@@ -23,17 +23,18 @@ const ComponentForm = ({
   const [formFields, setFormFields] = useState<JSX.Element[]>([]);
   const { fields } = useComponentStore((state) => state.components[type]);
 
-  const setCurrent = useComponentStore((state) => state.setCurrent);
+  console.log("this is properties", properties);
+
   const setSaved = useComponentStore((state) => state.setSaved);
 
   //set up default state of form
   useEffect(() => {
     let defaultState: FormState = { name: "default" };
     (Object.keys(fields) as string[]).forEach((property) => {
-      defaultState[property] = fields[property].default;
+      defaultState[property] = properties[property];
     });
     setFormState(defaultState);
-  }, [fields]);
+  }, [fields, properties]);
 
   useEffect(() => {
     const handleChange = (fieldName: string, fieldValue: string | number) => {
