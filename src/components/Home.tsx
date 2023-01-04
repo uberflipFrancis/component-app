@@ -25,8 +25,8 @@ const Home = () => {
     <div>
       <h1 className="text-3xl font-bold p-5 text-center">Component Editor</h1>
       <div className="flex flex-col">
-        <div className="grid grid-cols-3">
-          <div className="flex p-5 justify-center items-center">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3">
+          <div className="flex flex-col p-5 justify-center items-center">
             <div className="w-80 flex items-center justify-center">
               <Button
                 properties={{
@@ -38,9 +38,24 @@ const Home = () => {
                 }}
               ></Button>
             </div>
+            <div className={`${componentContainer}`}>
+              <h2 className={`${componentTitle}`}>Button</h2>
+              <div className={`${buttonContainer}`}>
+                <Link to="saved/button">
+                  <button className={`${componentButton}`}>
+                    Saved Components
+                  </button>
+                </Link>
+                <Link to={`button/${buttonSaved.length}`}>
+                  <button className={`${componentButton}`}>
+                    New Component
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="flex p-5 justify-center items-center">
-            <div className="w-80 flex items-center justify-center">
+          <div className="flex flex-col p-5 justify-center items-center">
+            <div className="w-80 flex flex-col items-center justify-center">
               <Tile
                 properties={{
                   name: "test",
@@ -54,10 +69,25 @@ const Home = () => {
                   descriptionColor: "#fff",
                 }}
               ></Tile>
+              <div className={`${componentContainer}`}>
+                <h2 className={`${componentTitle}`}>Tile</h2>
+                <div className={`${buttonContainer}`}>
+                  <Link to="saved/tile">
+                    <button className={`${componentButton}`}>
+                      Saved Components
+                    </button>
+                  </Link>
+                  <Link to={`tile/${tileSaved.length}`}>
+                    <button className={`${componentButton}`}>
+                      New Component
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex p-5 justify-center items-center">
-            <div className="w-80 flex items-center justify-center">
+          <div className="p-5 justify-center items-center">
+            <div className="flex flex-col items-center justify-center">
               <CTA
                 properties={{
                   name: "testing",
@@ -65,50 +95,25 @@ const Home = () => {
                   buttonBackground: "#000",
                 }}
               ></CTA>
+              <div className={`${componentContainer}`}>
+                <h2 className={`${componentTitle}`}>CTA</h2>
+                <div className={`${buttonContainer}`}>
+                  <Link to="saved/cta">
+                    <button className={`${componentButton}`}>
+                      Saved Components
+                    </button>
+                  </Link>
+                  <Link to={`cta/${ctaSaved.length}`}>
+                    <button className={`${componentButton}`}>
+                      New Component
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3">
-          <div className={`${componentContainer}`}>
-            <h2 className={`${componentTitle}`}>Button</h2>
-            <div className={`${buttonContainer}`}>
-              <Link to="saved/button">
-                <button className={`${componentButton}`}>
-                  Saved Components
-                </button>
-              </Link>
-              <Link to={`button/${buttonSaved.length}`}>
-                <button className={`${componentButton}`}>New Component</button>
-              </Link>
-            </div>
-          </div>
-          <div className={`${componentContainer}`}>
-            <h2 className={`${componentTitle}`}>Tile</h2>
-            <div className={`${buttonContainer}`}>
-              <Link to="saved/tile">
-                <button className={`${componentButton}`}>
-                  Saved Components
-                </button>
-              </Link>
-              <Link to={`tile/${tileSaved.length}`}>
-                <button className={`${componentButton}`}>New Component</button>
-              </Link>
-            </div>
-          </div>
-          <div className={`${componentContainer}`}>
-            <h2 className={`${componentTitle}`}>CTA</h2>
-            <div className={`${buttonContainer}`}>
-              <Link to="saved/cta">
-                <button className={`${componentButton}`}>
-                  Saved Components
-                </button>
-              </Link>
-              <Link to={`cta/${ctaSaved.length}`}>
-                <button className={`${componentButton}`}>New Component</button>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <div className="grid grid-cols-3"></div>
       </div>
     </div>
   );
