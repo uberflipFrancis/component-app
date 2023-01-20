@@ -150,7 +150,7 @@ const useComponentStore = create<State>()((set) => ({
       current: {
         name: "testing",
         backgroundColor: "#000000",
-        textColor: "#000000",
+        textColor: "#ffffff",
         textSize: 12,
         borderRadius: 0,
       } as ButtonElement,
@@ -173,7 +173,6 @@ const useComponentStore = create<State>()((set) => ({
     },
   },
   setCurrent: (type, element) => {
-    console.log("this is element", type);
     set((state) => {
       return {
         ...state,
@@ -235,37 +234,37 @@ interface Field {
 interface Component {
   fields: { [key: string]: Field };
   component: () => JSX.Element;
-  current: Element;
-  saved: Element[];
+  current: GenElement;
+  saved: GenElement[];
 }
 
 interface State {
   components: {
     [key: string]: Component;
   };
-  setCurrent: (component: string, element: Element) => void;
-  setSaved: (component: string, element: Element, index: number) => void;
-  addSaved: (type: string, element: Element, index: number) => void;
+  setCurrent: (component: string, element: GenElement) => void;
+  setSaved: (component: string, element: GenElement, index: number) => void;
+  addSaved: (type: string, element: GenElement, index: number) => void;
 }
 
-interface Element {
+interface GenElement {
   name: string;
   [key: string]: any;
 }
 
-interface ButtonElement extends Element {
+interface ButtonElement extends GenElement {
   backgroundColor: string;
   textColor: string;
   textSize: number;
   borderRadius: number;
 }
 
-interface CTAElement extends Element {
+interface CTAElement extends GenElement {
   tileBackground: string;
   buttonBackground: string;
 }
 
-interface TileElement extends Element {
+interface TileElement extends GenElement {
   tileBackground: string;
   descriptionBackground: string;
   tileTitle: string;
@@ -295,7 +294,7 @@ function App() {
     </div>
   );
 }
-export type { Field, ButtonElement, CTAElement, TileElement, Element };
+export type { Field, ButtonElement, CTAElement, TileElement, GenElement };
 export { useComponentStore };
 
 export default App;

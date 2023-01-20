@@ -1,7 +1,8 @@
-import React, { FormEvent, useState, useEffect } from "react";
-import type { Element } from "../App";
+import React, { useState, useEffect } from "react";
+import type { GenElement } from "../App";
 
 import { useComponentStore } from "../App";
+import { useForm } from "react-hook-form";
 
 interface FormState {
   name: string;
@@ -11,7 +12,7 @@ interface FormState {
 interface FormProps {
   type: string;
   cIndex: number;
-  properties: Element;
+  properties: GenElement;
 }
 
 const ComponentForm = ({
@@ -22,6 +23,7 @@ const ComponentForm = ({
   const [formState, setFormState] = useState<FormState>({} as FormState);
   const [formFields, setFormFields] = useState<JSX.Element[]>([]);
   const { fields } = useComponentStore((state) => state.components[type]);
+  const { register, handleSubmit } = useForm<GenElement>();
 
   const setSaved = useComponentStore((state) => state.setSaved);
 
@@ -47,6 +49,7 @@ const ComponentForm = ({
         <label className="flex mb-3" key={index}>
           <span>{property}</span>
           <input
+            {...register(`${property}`)}
             className="ml-auto w-50 border"
             key={index}
             name={property}
@@ -61,20 +64,16 @@ const ComponentForm = ({
     });
 
     setFormFields(newFormFields);
-  }, [fields, formState]);
+  }, [fields, formState, register]);
 
-  let handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    setSaved(type, formState, cIndex);
+  let handleSubmit2 = (data: GenElement) => {
+    setSaved(type, data, cIndex);
   };
 
   return (
     <div>
       <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
+        onSubmit={handleSubmit(handleSubmit2)}
         className="flex flex-col p-5 border-solid border border-black w-80"
       >
         {formFields}

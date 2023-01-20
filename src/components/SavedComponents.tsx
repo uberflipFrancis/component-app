@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { useComponentStore } from "../App";
 
-import type { Element } from "../App";
+import type { GenElement } from "../App";
 import { Link } from "react-router-dom";
 
 const SavedComponents = () => {
@@ -16,10 +16,10 @@ const SavedComponents = () => {
   useEffect(() => {
     const makeList = (
       component: () => JSX.Element,
-      saved: Element[],
+      saved: GenElement[],
       type: string
     ): JSX.Element[] => {
-      return saved.map((properties: Element, index) => {
+      return saved.map((properties: GenElement, index) => {
         let NewElement: any = component; //edit
 
         return (
@@ -71,7 +71,7 @@ const SavedComponents = () => {
       ) : (
         <div className="p-5">
           <Link to="/component">
-            <button className={`${componentButton} m-5`}>Back home</button>
+            <button className={`${componentButton}`}>Back home</button>
           </Link>
           <div className="text-3xl font-bold p-5 text-center">
             <h1>Looks like there isn't a component with that name</h1>

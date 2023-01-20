@@ -8,23 +8,26 @@ import { Link } from "react-router-dom";
 
 import { useComponentStore } from "../App";
 
-const Home = () => {
-  const componentContainer = "p-5";
-  const buttonContainer = "flex justify-start";
-  const componentTitle = "text-xl mb-2 font-bold";
-  const componentButton =
-    "bg-red-700 text-zinc-100 p-3 rounded mb-2 first:mr-2";
+import ComponentSelector from "./ComponentSelector";
 
-  const buttonSaved = useComponentStore(
-    (state) => state.components.button.saved
-  );
-  const tileSaved = useComponentStore((state) => state.components.tile.saved);
-  const ctaSaved = useComponentStore((state) => state.components.cta.saved);
+const Home = () => {
+  // const componentContainer = "p-5";
+  // const buttonContainer = "flex justify-start";
+  // const componentTitle = "text-xl mb-2 font-bold";
+  // const componentButton =
+  //   "bg-red-700 text-zinc-100 p-3 rounded mb-2 first:mr-2";
+
+  // const buttonSaved = useComponentStore(
+  //   (state) => state.components.button.saved
+  // );
+  // const tileSaved = useComponentStore((state) => state.components.tile.saved);
+  // const ctaSaved = useComponentStore((state) => state.components.cta.saved);
 
   return (
     <div>
       <h1 className="text-3xl font-bold p-5 text-center">Component Editor</h1>
-      <div className="flex flex-col">
+      <ComponentSelector />
+      {/* <div className="flex flex-col">
         <div className="grid sm:grid-cols-1 md:grid-cols-3">
           <div className="flex flex-col p-5 justify-center items-center">
             <div className="w-80 flex items-center justify-center">
@@ -114,7 +117,7 @@ const Home = () => {
           </div>
         </div>
         <div className="grid grid-cols-3"></div>
-      </div>
+      </div> */}
     </div>
   );
 };
